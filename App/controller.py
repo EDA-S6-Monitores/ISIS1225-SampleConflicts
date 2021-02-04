@@ -53,5 +53,5 @@ def loadTags(filename):
 
 
 def loadBooksTags(catalog):
-    # TO-DO: Modificación del Est-1 y Est-2 en el Lab 2
-    pass
+    # TO-DO: Modificación de Est-1 y Est-2 en el Lab 2
+    print('Cambios hola')
