@@ -18,60 +18,79 @@
  *
  * You should have received a copy of the GNU General Public License
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Contribuciones:
+ * contribuciones:
  *
  * Dario Correal - Version inicial
  """
 
-
 import config as cf
+import sys
+import controller
 from DISClib.ADT import list as lt
 assert cf
 
+
 """
-En el modelo, se crean las estructuras de datos, es decir,
-las variables donde se van a guardar los datos leidos de los
-archivos CSV.
-
-El modelo debe ser el unico sitio donde se modifican y manipulan
-los datos.
+La vista se encarga de la interacción con el usuario
+Presenta el menu de opciones  y  por cada seleccion
+se hace la solicitud al controlador para ejecutar la
+operación solicitada
 """
 
 
-def addBooks(booksfile):
+def printMenu():
+    print("Opciones:")
+    print("1- Cargar Libros")
+    print("2- Cargar Tags")
+    # TO-DO: Modificación del Est-1 en el Lab 2
+    print("3- Carga Book-Tags!")
+    print("0- Salir")
+
+
+def loadBooks():
     """
-    Para guardar los libros provenientes del archivo CSV
-    vamos a crear una lista, en donde quedarán todos los datos.
-
-    No es importante entender como funciona esta lista por ahora.
-
-    La funcion newList crea una lista de muchas formas.  Una de ellas
-    es leyendo todo lo que encuentre en el archivo indicado por filename.
-    Cada linea del archivo quedará en una posicion de la lista.
+    Carga los libros
     """
-    books = lt.newList(datastructure='SINGLE_LINKED',
-                       filename=booksfile)
-    return books
+    return controller.loadBooks('GoodReads/books-small.csv')
 
 
-def addTag(taglist, tag):
+def loadTags():
     """
-    Para procesar el archivo de tags vamos a usar de otra forma la lista.
-    En este caso, agregaremos cada linea del archivo a la lista, en lugar
-    de usar la opcion de crearla con el nombre del archivo.
+    Carga los Tags
     """
-    lt.addLast(taglist, tag)
+    return controller.loadTags('GoodReads/tags.csv')
+
+def loadBookTags():
+    """
+    Cargar los Tags de libros
+    """
+    # TO-DO: Modificación del Est-1 en el Lab 2
 
 
-def createTagList():
-    """
-    Esta funcion crea una lista vacia.  Esta lista se utilizara
-    para ir guardando la informacion en el archivo de tags.
-    """
-    taglist = lt.newList(datastructure='SINGLE_LINKED')
-    return taglist
+"""
+Menu principal
+"""
+while True:
+    printMenu()
+    inputs = input('Seleccione una opción para continuar\n')
+    if int(inputs[0]) == 1:
+        print("Cargando información de libros....")
+        books = loadBooks()
+        print('Total de libros cargados: ' + str(lt.size(books)))
 
-def addBookTags():
-    # TO-DO: Modificación de Est-1 y Est-2 en el Lab 2
-    pass
+        # TO-DO: Modificación del Est-1 en el Lab 2
+
+
+        # TO-DO: Modificación del Est-2 en el Lab 2
+
+    elif int(inputs[0]) == 2:
+        print("Cargando información de tags....")
+        tags = loadTags()
+        print('Total de tags cargados: ' + str(lt.size(tags)))
+    elif True:
+        # TO-DO: Modificación del Est-2 en el Lab 2
+        pass
+
+    else:
+        sys.exit(0)
+sys.exit(0)
